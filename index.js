@@ -10,7 +10,11 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 const admissionApi = require("./apis/admissionApi/admissionApi");
 
 const corsConfig = {
-  origin: ["http://localhost:5173", "*"],
+  origin: [
+    "http://localhost:5173",
+    "https://thunderous-treacle-1d15b6.netlify.app/",
+    "*",
+  ],
   credentials: true,
   optionSuccessStatus: 200,
   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
