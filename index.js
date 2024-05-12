@@ -13,7 +13,7 @@ const usersApi = require("./apis/usersApi/usersApi");
 const corsConfig = {
   origin: [
     "http://localhost:5173",
-    "https://thunderous-treacle-1d15b6.netlify.app",
+    "https://sunwingstrainingcentre.netlify.app",
     "*",
   ],
   credentials: true,
