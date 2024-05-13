@@ -10,6 +10,8 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 const admissionApi = require("./apis/admissionApi/admissionApi");
 const usersApi = require("./apis/usersApi/usersApi");
 
+
+
 const corsConfig = {
   origin: [
     "http://localhost:5173",
@@ -20,6 +22,11 @@ const corsConfig = {
   optionSuccessStatus: 200,
   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
 };
+
+// middlewares
+app.use(cors(corsConfig));
+app.options("", cors(corsConfig));
+app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.whmcjvv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -58,11 +65,6 @@ async function run() {
   }
 }
 run().catch(console.dir);
-
-// middlewares
-app.use(cors(corsConfig));
-app.options("", cors(corsConfig));
-app.use(express.json());
 
 // basic setup
 app.get("/", (req, res) => {
