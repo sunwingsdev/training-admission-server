@@ -9,8 +9,7 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const admissionApi = require("./apis/admissionApi/admissionApi");
 const usersApi = require("./apis/usersApi/usersApi");
-
-
+const queriesApi = require("./apis/queriesApi/queryApi");
 
 const corsConfig = {
   origin: [
@@ -49,11 +48,15 @@ async function run() {
       .db("training-admission")
       .collection("admission");
     const usersCollection = client.db("training-admission").collection("users");
+    const queriesCollection = client
+      .db("training-admission")
+      .collection("queries");
     // collection ends here--------
 
     // api start here-------
     app.use("/admission", admissionApi(admissionCollection));
     app.use("/users", usersApi(usersCollection));
+    app.use("/query", queriesApi(queriesCollection));
     // api ends here--------
 
     // Send a ping to confirm a successful connection
